@@ -1,11 +1,31 @@
 #!/bin/bash
 
-echo "Running database migrations..."
+# Stop script if any command fails
+set -e
 
+echo "========================================"
+echo "Starting database migration..."
+echo "========================================"
+
+# Navigate to application directory
 cd /var/app/current
 
+echo "Current directory:"
+pwd
+
+# Activate virtual environment used by Elastic Beanstalk
+echo "Activating Python virtual environment..."
 source /var/app/venv/*/bin/activate
 
+# Set Flask environment variables
+export FLASK_APP=run.py
+export FLASK_ENV=production
+
+echo "Running Flask database migration..."
+
+# Run migrations
 flask db upgrade
 
-echo "Migration completed"
+echo "========================================"
+echo "Database migration completed successfully"
+echo "========================================"
