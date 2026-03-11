@@ -18,7 +18,7 @@ echo "Activating Python virtual environment..."
 source /var/app/venv/*/bin/activate
 
 # Set Flask environment variables
-export FLASK_APP=run.py
+export FLASK_APP=application.py
 export FLASK_ENV=production
 
 echo "Running Flask database migration..."

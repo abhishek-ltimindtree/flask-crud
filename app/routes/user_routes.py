@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.services.user_service import *
+from flask import Blueprint, jsonify
+
 
 user_bp = Blueprint("users", __name__)
-
 
 @user_bp.route("/")
 def index():
@@ -54,3 +55,12 @@ def delete(user_id):
     delete_user(user)
 
     return redirect(url_for("users.index"))
+
+
+
+@user_bp.route("/health")
+def home():
+    return jsonify({
+        "status": "running",
+        "service": "Flask Crud"
+    })
